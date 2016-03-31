@@ -7,23 +7,6 @@ class BinarySearchTree
     @root = nil
   end
 
-  # def insert(key, value, current=@root)
-  #   if current.nil?
-  #     @root = Node.new(key,value)
-  #   elsif key < current.key
-  #     if current.left.nil?
-  #       current.left = Node.new(key, value)
-  #     else insert(key, value, current.left)
-  #     end
-  #   elsif key > current.key
-  #     if current.right.nil?
-  #       current.right = Node.new(key, value)
-  #     else insert(key, value, current.right)
-  #     end
-  #   end
-  #   depth_of(key)
-  # end
-
   def insert(key, value, current=@root, depth=0)
     if current.nil?
       @root = Node.new(key,value)
@@ -42,6 +25,25 @@ class BinarySearchTree
     end
     depth
   end
+
+  # def insert(key, value, current=@root, depth=[])
+  #   if current.nil?
+  #     @root = Node.new(key,value)
+  #   elsif key < current.key
+  #     if current.left.nil?
+  #       current.left = Node.new(key, value)
+  #       depth << 1
+  #     else insert(key, value, current.left, depth)
+  #     end
+  #   elsif key > current.key
+  #     if current.right.nil?
+  #       current.right = Node.new(key, value)
+  #       depth << 1
+  #     else insert(key, value, current.right, depth)
+  #     end
+  #   end
+  #   (depth.length) - 1
+  # end
 
   def depth_of(key, current=@root)
     if current.nil?
@@ -98,6 +100,17 @@ class BinarySearchTree
       end
     end
     movies
+  end
+
+  def load
+    files_loaded = 0
+    IO.foreach( "movies.txt" ) do |key, value|
+      # unless include?(key)
+        insert(key, value)
+        files_loaded += 1
+      # end
+    end
+    files_loaded
   end
 
 end
