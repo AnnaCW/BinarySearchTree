@@ -24,7 +24,22 @@ class BinarySearchTree
       else insert(key, value, current.right, depth+=1)
       end
     end
+    depth
   end
+
+
+  def depth_of(key, current=@root)
+    if current.nil?
+        return nil
+    elsif key == current.key
+        return 0
+    elsif key < current.key
+      return 1 + depth_of(key, current.left)
+    elsif key > current.key
+      return 1 + depth_of(key, current.right)
+    end
+  end
+
 
   def include?(key, current=@root)
     if current.nil?
