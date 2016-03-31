@@ -71,6 +71,17 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal tree.insert(71, "Test3"), 1
   end
 
+  # def test_insert_depth_2
+  #   tree = BinarySearchTree.new
+  #   tree.insert(13, "Test1")
+  #   tree.insert(20, "Test2")
+  #   tree.insert(71, "Test3")
+  #   tree.insert(5, "Test4")
+  #   tree.insert(80, "Test5")
+  #   assert_equal tree.insert(5, "Test2"), 2
+  #   assert_equal tree.insert(80, "Test3"), 2
+  # end
+
   def test_depth_of_root
     tree = BinarySearchTree.new
     tree.insert(13, "Test1")
@@ -133,10 +144,20 @@ class BinarySearchTreeTest < Minitest::Test
     tree.insert(20, "Test2")
     tree.insert(8, "Test3")
     tree.insert(71, "Test4")
-
     expected = [{8 => "Test3"}, {20 => "Test2"}, {61 => "Test1"}, {71 => "Test4"}]
-
     assert_equal expected, tree.sort
   end
+
+  def test_can_load
+    tree = BinarySearchTree.new
+    assert_equal 24, tree.load
+  end
+
+  # def test_load_skips_existing_data
+  #   tree = BinarySearchTree.new
+  #   # tree.insert(75, "French Dirty")
+  #   tree.insert(11, "Love")
+  #   assert_equal 22, tree.load
+  # end
 
 end
